@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Informasi - Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            background-color: var(--orange-light);
+            color: var(--black);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header h1 {
+            color: var(--secondary-blue);
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-blue);
+        }
+
+        .berita-container {
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .berita-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .berita-card h3 {
+            color: var(--primary-blue);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .berita-card .meta {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .berita-card .meta span {
+            margin-right: 15px;
+        }
+
+        .berita-card .short-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .berita-card .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .info-bar .info-from-to {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .info-bar .detail-button {
+            background: none;
+            border: none;
+            color: var(--secondary-blue);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .info-bar .detail-button:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Gaya Modal (Pop-up) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideIn 0.3s ease-in-out;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 28px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .modal-content p {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+            .back-button {
+                position: static;
+                margin: 20px auto;
+            }
+            .modal-content {
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="home.html#beranda" target="main-frame">Beranda</a></li>
+                    <li><a href="home.html#tentang" target="main-frame">Tentang</a></li>
+                    <li><a href="home.html#fitur" target="main-frame">Fitur</a></li>
+                    <li><a href="home.html#galeri" target="main-frame">Galeri</a></li>
+                    <li><a href="home.html#kontak" target="main-frame">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <a href="home.html#fitur" class="back-button" target="main-frame"><i class="fas fa-arrow-left"></i> Kembali Ke Menu Awal</a>
+            <div class="container">
+                <h1>Berita & Informasi Sekolah</h1>
+                <p>Informasi terbaru seputar kegiatan dan pengumuman penting untuk kelas 7G.</p>
+            </div>
+        </section>
+
+        <section class="berita-container">
+            <div class="berita-card">
+                <h3>[BERITA 1]</h3>
+                <p class="meta"><span>Tanggal: --/--/----</span><span>Waktu: --:--</span></p>
+                <p class="short-desc">Saat Ini belum ada informasi terbaru. (update terus untuk melihat informasi terbaru)</p>
+                <div class="info-bar">
+                    <span class="info-from-to">Dari: Publisher | Kepada: Not Found</span>
+                    <button class="detail-button" data-berita-id="1">
+                        <i class="fas fa-ellipsis-v"></i> Lihat Informasi Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+
+            <div class="berita-card">
+                <h3>[BERITA 2]</h3>
+                <p class="meta"><span>Tanggal: 11/08/2025</span><span>Waktu: 20.42</span></p>
+                <p class="short-desc"></p>Jangan Lupa besuk selasa ada olahraga pagi, seluruh siswa siswi kelas 7G diharapkan pakai baju olahraga dari rumah dan memakai sepatu putih dan membawa ganti sesuai baju sd/mi MEMBAWA GANTI SEPATU HITAM.</p>
+                <div class="info-bar">
+                    <span class="info-from-to">Dari: Ketua Kelas| Kepada: Siswa 7G</span>
+                    <button class="detail-button" data-berita-id="2">
+                        <i class="fas fa-ellipsis-v"></i> Lihat Informasi Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+
+            <div class="berita-card">
+                <h3>[BERITA 3]</h3>
+                <p class="meta"><span>Tanggal: 11/08/2025</span><span>Waktu: 19.00</span></p>
+                <p class="short-desc">Pemberitahuan Untuk adek adek kelas 7G yang mengikuti PMR</p>.</p>
+                <div class="info-bar">
+                    <span class="info-from-to">Dari: PMR Brawijaya dan Publisher| Kepada: Siswa 7G yang mengikuti PMR</span>
+                    <button class="detail-button" data-berita-id="3">
+                        <i class="fas fa-ellipsis-v"></i> Lihat Informasi Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+
+            <div class="berita-card">
+                <h3>[BERITA 4]</h3>
+                <p class="meta"><span>Tanggal: 04/08/2025</span><span>Waktu: 09:00</span></p>
+                <p class="short-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="info-bar">
+                    <span class="info-from-to">Dari: Sekolah | Kepada: Semua Siswa</span>
+                    <button class="detail-button" data-berita-id="4">
+                        <i class="fas fa-ellipsis-v"></i> Lihat Informasi Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+
+            <div class="berita-card">
+                <h3>[BERITA 5]</h3>
+                <p class="meta"><span>Tanggal: 05/08/2025</span><span>Waktu: 15:45</span></p>
+                <p class="short-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="info-bar">
+                    <span class="info-from-to">Dari: Wali Kelas 7G | Kepada: Siswa 7G</span>
+                    <button class="detail-button" data-berita-id="5">
+                        <i class="fas fa-ellipsis-v"></i> Lihat Informasi Lebih Lanjut
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PTEK Technology | ITS Server | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber Riset: 404 Not Found</p>
+        </div>
+    </footer>
+
+    <div id="beritaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>INFORMASI LEBIH LANJUT</h2>
+            <p id="modal-long-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <hr>
+            <p><strong>Untuk:</strong> <span id="modal-untuk">Lorem Ipsum</span></p>
+            <p><strong>Dari:</strong> <span id="modal-dari">Dolor sit amet</span></p>
+            <p><strong>Agenda:</strong> <span id="modal-agenda">Labore et dolore</span></p>
+            <p><strong>Untuk tanggal:</strong> <span id="modal-tanggal">Hari --/--/----</span></p>
+            <p><strong>Expired Berita:</strong> <span id="modal-expired">Hari --/--/----</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Data berita untuk pop-up
+        const beritaData = {
+            1: {
+                longDesc: "Saat Ini belum ada informasi di BERITA 1 Update terus untuk mendapatkan informasi yang tepat",
+                untuk: "Not Found",
+                dari: "Publisher",
+                agenda: "Not Found",
+                tanggal: "XXXXXX, --/--/----",
+                expired: "XXXXXX, --/--/----"
+            },
+            2: {
+                longDesc: "Diberitahukan kepada seluruh siswa-siswi kelas 7G besuk memakai baju olahraga dan bersepatu putih, jangan lupa membawa ganti baju sesuai sd/mi jangan lupa membawa sepatu hitam buat ganti. jangan lupa PJOK praktek yang belum dari Minggu kemarin",
+                untuk: "Siswa 7G",
+                dari: "Ketua Kelas 7G",
+                agenda: "Mapel PJOK",
+                tanggal: "Senin, 11/08/2025",
+                expired: "Selasa, 12/08/2025"
+            },
+            3: {
+                longDesc: "Berita ekstrakulikuler PMR (Palang merah remaja), Bagi siswa-siswi Kelas 7G yang mengikuti ekstrakurikuler PMR diharap membawa ganti baju pmr bawahan training, jika tidak punya bisa memakai kaoa hitam, bawahan training (Tidak boleh olahraga) Pulang jam 16.15(Empat lebih limabelas). untuk informasi lebih lanjut bisa cek grup PMR Brawijaya",
+                untuk: "Siswa 7G yang mengikuti PMR",
+                dari: "PMR Brawijaya Dan Publiser berita",
+                agenda: "Ekstrakulikuler PMR",
+                tanggal: "Senin, 11/08/2025",
+                expired: "Selasa, 12/08/2025 (04:00)"
+            },
+            4: {
+                longDesc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                untuk: "Semua Siswa",
+                dari: "Sekolah",
+                agenda: "Ujian tengah semester",
+                tanggal: "Kamis, 21/08/2025",
+                expired: "Kamis, 28/08/2025"
+            },
+            5: {
+                longDesc: "Sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                untuk: "Siswa 7G",
+                dari: "Wali Kelas 7G",
+                agenda: "Kegiatan class meeting",
+                tanggal: "Jumat, 22/08/2025",
+                expired: "Jumat, 29/08/2025"
+            }
+        };
+
+        const modal = document.getElementById('beritaModal');
+        const detailButtons = document.querySelectorAll('.detail-button');
+        const closeButton = document.querySelector('.close-button');
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const beritaId = this.dataset.beritaId;
+                const data = beritaData[beritaId];
+                
+                document.getElementById('modal-long-desc').textContent = data.longDesc;
+                document.getElementById('modal-untuk').textContent = data.untuk;
+                document.getElementById('modal-dari').textContent = data.dari;
+                document.getElementById('modal-agenda').textContent = data.agenda;
+                document.getElementById('modal-tanggal').textContent = data.tanggal;
+                document.getElementById('modal-expired').textContent = data.expired;
+
+                modal.style.display = 'block';
+            });
+        });
+
+        closeButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Update year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

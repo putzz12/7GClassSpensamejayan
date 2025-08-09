@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasilitas Kelas - Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gaya khusus untuk halaman fasilitas kelas */
+        .page-header {
+            background-color: var(--primary-blue);
+            color: var(--black);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header h1 {
+            color: var(--black);
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent-blue);
+        }
+
+        .facilities-section {
+            padding: 80px 20px;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .facility-item {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .facility-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility-item img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .facility-item h3 {
+            font-size: 22px;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .facility-item .quantity {
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .facility-item .description {
+            font-size: 15px;
+            color: #888;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+
+            .back-button {
+                position: static;
+                margin-bottom: 20px;
+                width: fit-content;
+            }
+
+            .facilities-section {
+                padding: 40px 15px;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="index.html#tentang">Tentang</a></li>
+                    <li><a href="index.html#fitur">Fitur</a></li>
+                    <li><a href="index.html#galeri">Galeri</a></li>
+                    <li><a href="index.html#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <a href="index.html#fitur" class="back-button"><i class="fas fa-arrow-left"></i> Kembali Ke Menu Awal</a>
+            <div class="container">
+                <h1>FASILITAS KELAS 7G</h1>
+                <p>Informasi detail mengenai fasilitas dan sarana prasarana yang ada di kelas.</p>
+            </div>
+        </section>
+
+        <section class="facilities-section">
+            <div class="facilities-grid">
+                
+                <div class="facility-item">
+                    <img src="images/kipas_angin.jpg" alt="Gambar Kipas Angin">
+                    <h3>Kipas Angin</h3>
+                    <p class="quantity">Pcs: 1</p>
+                    <p class="description"></p>
+                </div>
+
+                <div class="facility-item">
+                    <img src="images/ac.jpg" alt="Gambar AC">
+                    <h3>AC</h3>
+                    <p class="quantity">Pcs: 2</p>
+                    <p class="description"></p>
+                </div>
+                
+                <div class="facility-item">
+                    <img src="images/papan_tulis.jpg" alt="Gambar Papan Tulis">
+                    <h3>Papan Tulis</h3>
+                    <p class="quantity">Pcs: 1 - Tv Kelas: 1 </p>
+                    <p class="description"></p>
+                </div>
+                
+                <div class="facility-item">
+                    <img src="images/alat_kebersihan.jpg" alt="Gambar Alat Kebersihan">
+                    <h3>Alat Kebersihan</h3>
+                    <p class="quantity">Pcs: 4</p>
+                    <p class="description">(Mencakup sapu, pel, sulak)</p>
+                </div>
+                
+                <div class="facility-item">
+                    <img src="images/alat_tulis_papan.jpg" alt="Gambar Alat Tulis Papan">
+                    <h3>Alat Tulis Papan</h3>
+                    <p class="quantity">Pcs: 4</p>
+                    <p class="description"></p>
+                </div>
+                
+                <div class="facility-item">
+                    <img src="images/bangku_siswa.jpg" alt="Gambar Bangku Siswa">
+                    <h3>Bangku Siswa</h3>
+                    <p class="quantity"></p>
+                    <p class="description">*Mencakup 16 Meja dan 32 Kursi</p>
+                </div>
+                
+                <div class="facility-item">
+                    <img src="images/komputer.jpg" alt="Gambar Komputer">
+                    <h3>Chromebook</h3>
+                    <p class="quantity">Pcs: 32 Chromebook </p>
+                    <p class="description">Kelas ditenagai SRG (Sekolah Rujukan Google)</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PTEK Technology | ITS Server | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber Riset: 404 Not Found</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

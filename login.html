@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Publisher Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+        }
+
+        .login-form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-form-container h2 {
+            font-size: 28px;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .input-group .icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        .login-message {
+            color: var(--primary-red);
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .back-to-home {
+            margin-top: 25px;
+            display: block;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <div class="login-form-container">
+        <h2>LOGIN UNTUK PUBLISHER</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-user icon"></i>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+            <p id="login-message" class="login-message"></p>
+        </form>
+        <a href="home.html" class="back-to-home">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageEl = document.getElementById('login-message');
+
+            const validUsers = {
+                'pUtzxa910': '91049104',
+                'Admin': 'User'
+            };
+
+            if (validUsers[username] && validUsers[username] === password) {
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('username', username);
+                window.location.href = 'admin_panel.html';
+            } else {
+                messageEl.textContent = 'Username atau Password salah!';
+            }
+        });
+    </script>
+</body>
+</html>

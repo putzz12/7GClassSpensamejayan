@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Tugas - Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS untuk halaman daftar tugas */
+        .page-header {
+            background-color: var(--primary-blue);
+            color: var(--black);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header h1 {
+            color: var(--black);
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent-blue);
+        }
+
+        .tugas-container {
+            padding: 40px 20px;
+            background-color: var(--light-bg);
+        }
+
+        .tugas-container h2 {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+
+        .tugas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tugas-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .tugas-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+
+        .tugas-card h3 {
+            color: var(--primary-red);
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .tugas-card p {
+            line-height: 1.5;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .tugas-card .teacher-info {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tugas-card .due-date {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* ----- CSS untuk Status Tugas ----- */
+        .status-ON_1 {
+            background-color: rgba(46, 204, 113, 0.2); /* Hijau transparan */
+            border-color: #2ecc71;
+            animation: blink 2s infinite ease-in-out;
+        }
+        
+        .status-ON_2 {
+            background-color: rgba(231, 76, 60, 0.2); /* Merah transparan */
+            border-color: #e74c3c;
+        }
+        
+        .status-ON_3 {
+            background-color: rgba(241, 196, 15, 0.2); /* Kuning transparan */
+            border-color: #f1c40f;
+        }
+        
+        .status-OFF {
+            background-color: rgba(189, 195, 199, 0.2); /* Abu-abu transparan */
+            border-color: #bdc3c7;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .no-task-text {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .tugas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="home.html" target="_top">Beranda</a></li>
+                    <li><a href="home.html#tentang" target="_top">Tentang</a></li>
+                    <li><a href="home.html#fitur" target="_top">Fitur</a></li>
+                    <li><a href="home.html#galeri" target="_top">Galeri</a></li>
+                    <li><a href="home.html#kontak" target="_top">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="tugas-container">
+        <section class="page-header">
+            <a href="jadwal_online.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali Ke Jadwal</a>
+            <div class="container">
+                <h1>DAFTAR TUGAS DAN PR</h1>
+                <p>Informasi terbaru mengenai tugas dan PR dari guru pembimbing.</p>
+            </div>
+        </section>
+        <div class="tugas-grid">
+            <div class="tugas-card" data-status="OFF">
+                <h3>IPS</h3>
+                <p class="teacher-info">Pembimbing: Bu Erlina (AE)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+            
+            <div class="tugas-card" data-status="OFF">
+                <h3>PAI</h3>
+                <p class="teacher-info">Pembimbing: Bu Imas (MR)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+
+            <div class="tugas-card" data-status="OFF">
+                <h3>SBK</h3>
+                <p class="teacher-info">Pembimbing: Bu Ismiatun (IS)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+            
+            <div class="tugas-card" data-status="OFF">
+                <h3>PJOK</h3>
+                <p class="teacher-info">Pembimbing: Pak Zaenal Arifin (ZA)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+            
+            <div class="tugas-card" data-status="OFF">
+                <h3>MATEMATIKA</h3>
+                <p class="teacher-info">Pembimbing: Bapak Joko Susilo (JS)</p>
+                <p><strong>Tugas/PR:</strong> Saat ini tidak ada tugas</p>
+                <p><strong>Tugas:</strong>-</p>
+                <p class="due-date">Untuk tanggal: --/--/----</p>
+            </div>
+            
+            <div class="tugas-card" data-status="OFF">
+                <h3>BAHASA INGGRIS</h3>
+                <p class="teacher-info">Pembimbing: Bu Sriwinarsih (SW)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+
+            <div class="tugas-card" data-status="ON_3">
+                <h3>BK</h3>
+                <p class="teacher-info">Pembimbing: Bu Ni Ayu Sekar (NS)</p>
+                <p><strong>Tugas/PR:</strong> Mengisi TENTANG DIRI AKU DI GOOGLE CLASSROOM</p>
+                <p><strong>Tugas:</strong> Kumpulkan di google form (DIISI)</p>
+                <p class="due-date">Untuk tanggal: --/--/----</p>
+            </div>
+            
+            <div class="tugas-card" data-status="ON_3">
+                <h3>BAHASA INDONESIA</h3>
+                <p class="teacher-info">Pembimbing: Bu Sugiati (SG)</p>
+                <p class="no-task-text">Mencatat rangkuman yang dikirim di group .</p>
+            </div>
+
+            <div class="tugas-card" data-status="ON_3">
+                <h3>PP</h3>
+                <p class="teacher-info">Pembimbing: Bu Titin Nurahmawati (TN)</p>
+                <p><strong>Tugas/PR:</strong> Menulis tabel dan mengisi nama tokoh BPUPKI yang ada di google classroom DAN dikasih 1 biografi </p>
+                <p><strong>Tugas:</strong> ONLINE-CLASSROOM</p>
+                <p class="due-date">Untuk tanggal: --/--/2025</p>
+            </div>
+
+            <div class="tugas-card" data-status="OFF">
+                <h3>BJW</h3>
+                <p class="teacher-info">Pembimbing: Bu Herlina Susanti (HS)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+            
+            <div class="tugas-card" data-status="OFF">
+                <h3>IPA</h3>
+                <p class="teacher-info">Pembimbing: Bu Anik Wijayati (AW)</p>
+                <p class="no-task-text">Tidak ada tugas saat ini.</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PZI Technology | Gemini Ai | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber: Web Pencarian, GeminiPRO, Google Maps, SMPN 1 Mejayan </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Skrip untuk mengaplikasikan warna berdasarkan data-status
+        document.addEventListener('DOMContentLoaded', function() {
+            const tugasCards = document.querySelectorAll('.tugas-card');
+            tugasCards.forEach(card => {
+                const status = card.getAttribute('data-status');
+                card.classList.add(`status-${status}`);
+                
+                // Sembunyikan teks tugas jika status OFF
+                if (status === 'OFF') {
+                    const tasks = card.querySelectorAll('p:not(.teacher-info):not(.no-task-text)');
+                    tasks.forEach(task => task.style.display = 'none');
+                }
+            });
+        });
+
+        // Mengupdate tahun di footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

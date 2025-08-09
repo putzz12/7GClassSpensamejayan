@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siswa Berlian - Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .berlian-header {
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .berlian-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        
+        .berlian-header p {
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .berlian-container {
+            padding: 50px 20px;
+            background-color: var(--light-bg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .berlian-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: center;
+            padding-top: 150px; /* Jarak untuk foto */
+            transition: transform 0.3s;
+        }
+        
+        .berlian-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .berlian-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: -90px; /* Mengangkat foto agar keluar dari bingkai */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .berlian-content {
+            padding: 20px;
+        }
+
+        .berlian-content h3 {
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .berlian-content .nis {
+            font-size: 16px;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+        }
+        
+        .berlian-content h4 {
+            font-size: 18px;
+            color: var(--secondary-blue);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .berlian-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        
+        .berlian-content ul li {
+            font-size: 14px;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+
+        .berlian-content ul li strong {
+            color: var(--primary-red);
+            display: inline-block;
+            width: 120px;
+        }
+        
+        @media (max-width: 768px) {
+            .berlian-container {
+                grid-template-columns: 1fr;
+            }
+            .berlian-card {
+                padding-top: 120px;
+            }
+            .berlian-photo {
+                width: 150px;
+                height: 150px;
+                top: -75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="home.html#beranda" target="_top">Beranda</a></li>
+                    <li><a href="home.html#tentang" target="_top">Tentang</a></li>
+                    <li><a href="home.html#fitur" target="_top">Fitur</a></li>
+                    <li><a href="galeri.html" target="_top">Galeri</a></li>
+                    <li><a href="home.html#kontak" target="_top">Kontak</a></li>
+                    <li><a href="login.html" target="_top">Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="berlian-header">
+            <h1>SISWA BERLIAN KELAS 7G</h1>
+            <p>Siswa-siswi yang telah mengukir prestasi membanggakan.</p>
+        </section>
+
+        <section class="berlian-container">
+            <div class="berlian-card">
+                <img src="images/siswa_default.png" alt="Foto Siswa" class="berlian-photo">
+                <div class="berlian-content">
+                    <h3>SORRY, NOT FOUND</h3>
+                    <p class="nis">NIS: SORRY, NOT FOUND</p>
+                    <h4>Keterangan Prestasi</h4>
+                    <ul>
+                        <li><strong>Juara:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Tingkat:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Diselenggarakan:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Dalam Rangka:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Keterangan lainnya:</strong> SORRY, NOT FOUND</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="berlian-card">
+                <img src="images/siswa_default.png" alt="Foto Siswa" class="berlian-photo">
+                <div class="berlian-content">
+                    <h3>SORRY, NOT FOUND</h3>
+                    <p class="nis">NIS: SORRY, NOT FOUND</p>
+                    <h4>Keterangan Prestasi</h4>
+                    <ul>
+                        <li><strong>Juara:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Tingkat:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Diselenggarakan:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Dalam Rangka:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Keterangan lainnya:</strong> SORRY, NOT FOUND</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="berlian-card">
+                <img src="images/siswa_default.png" alt="Foto Siswa" class="berlian-photo">
+                <div class="berlian-content">
+                    <h3>SORRY, NOT FOUND</h3>
+                    <p class="nis">NIS: SORRY, NOT FOUND</p>
+                    <h4>Keterangan Prestasi</h4>
+                    <ul>
+                        <li><strong>Juara:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Tingkat:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Diselenggarakan:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Dalam Rangka:</strong> SORRY, NOT FOUND</li>
+                        <li><strong>Keterangan lainnya:</strong> SORRY, NOT FOUND</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PZI Technology | Gemini Ai | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber: Web Pencarian, GeminiPRO, Google Maps, SMPN 1 Mejayan </p>
+            <div class="social-media">
+                <p>Follow Us! </p>
+                <a href="https://instagram.com/7gspensa" target="_blank" aria-label="Instagram 7G Spensa"><i class="fab fa-instagram"></i> 7G Spensa</a>
+                <a href="https://instagram.com/smpn1mejayan" target="_blank" aria-label="Instagram SMPN 1 Mejayan"><i class="fab fa-instagram"></i> SMP Negeri 1 Mejayan</a>
+                <a href="https://tiktok.com/@smpn1mejayan" target="_blank" aria-label="TikTok SMPN 1 Mejayan"><i class="fab fa-tiktok"></i> SMP Negeri 1 Mejayan</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

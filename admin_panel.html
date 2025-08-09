@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-page {
+            padding: 80px 20px;
+            background-color: var(--light-bg);
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .admin-header h1 {
+            color: var(--primary-blue);
+            font-size: 36px;
+        }
+        
+        .admin-header p {
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .admin-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .admin-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .admin-card h3 {
+            color: var(--secondary-blue);
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .admin-card form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .admin-card form input, .admin-card form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .admin-card form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .admin-card button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-card button.reset-btn {
+            background-color: var(--primary-red);
+            margin-top: 10px;
+        }
+        
+        .admin-card button:hover {
+            background-color: var(--secondary-blue);
+        }
+        
+        .admin-card button.reset-btn:hover {
+            background-color: #c9302c;
+        }
+
+        .developer-info {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .developer-info p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="admin-page">
+    <div class="container">
+        <header class="admin-header">
+            <h1>PUBLISHER WEB DEVELOPMENT</h1>
+            <p>Selamat datang, <span id="admin-username"></span>.</p>
+        </header>
+
+        <section class="admin-cards-grid">
+            <div class="admin-card">
+                <h3>GANTI INFORMASI BERITA</h3>
+                <form id="editBeritaForm">
+                    <label for="beritaTitle">Judul Berita:</label>
+                    <input type="text" id="beritaTitle" name="beritaTitle" required>
+                    <label for="beritaContent">Isi Berita:</label>
+                    <textarea id="beritaContent" name="beritaContent" rows="6" required></textarea>
+                    <button type="submit">Kirim Berita</button>
+                    <p class="info-message">Perubahan hanya tersimpan di browser Anda.</p>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>ATUR WAKTU</h3>
+                <form id="setWaktuForm">
+                    <label for="setWaktu">Atur Waktu:</label>
+                    <input type="datetime-local" id="setWaktu" name="setWaktu">
+                    <button type="submit">Setting Waktu</button>
+                    <p class="info-message">Fitur ini hanya untuk demo, waktu di browser pengguna lain tidak akan berubah.</p>
+                </form>
+            </div>
+            
+            <div class="admin-card">
+                <h3>INFORMASI POP UP</h3>
+                <form id="editPopUpForm">
+                    <label for="popupText">Edit Teks Pop-up:</label>
+                    <textarea id="popupText" name="popupText" rows="4" required></textarea>
+                    <label for="popupPage">Letak:</label>
+                    <select id="popupPage" name="popupPage" required>
+                        <option value="menu.html">Menu.html</option>
+                        <option value="struktur_kelas.html">struktur_kelas.html</option>
+                        <option value="info_berita.html">info_berita.html</option>
+                        <option value="jadwal_online.html">jadwal_online.html</option>
+                        <option value="fasilitas_kelas.html">fasilitas_kelas.html</option>
+                    </select>
+                    <button type="submit">Edit Info PopUp</button>
+                </form>
+                <hr>
+                <form id="resetPopUpForm">
+                    <label for="resetPage">Reset Pop Up:</label>
+                    <select id="resetPage" name="resetPage" required>
+                        <option value="menu.html">Menu.html</option>
+                        <option value="struktur_kelas.html">struktur_kelas.html</option>
+                        <option value="info_berita.html">info_berita.html</option>
+                        <option value="jadwal_online.html">jadwal_online.html</option>
+                        <option value="fasilitas_kelas.html">fasilitas_kelas.html</option>
+                    </select>
+                    <button type="submit" class="reset-btn">Reset Informasi Pop Up</button>
+                    <p class="info-message">Perubahan hanya tersimpan di browser Anda.</p>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Informasi Developer Web</h3>
+                <div class="developer-info">
+                    <p><i class="fas fa-user-circle"></i> Mohammad Adly Putra Zaidan</p>
+                    <p>Dikembangkan: 31 July 2025</p>
+                    <p>Diresmikan: 10 August 2025</p>
+                    <p>Versi: 0.041.AQPL (Resmi)</p>
+                    <p>Dibantu:</p>
+                    <ul>
+                        <li>GeminiAi (Ditenagai Juga)</li>
+                        <li>GitHub (Web Hosting)</li>
+                        <li>Google</li>
+                        <li>Canva</li>
+                        <li>SIBI</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <button id="logout-button" style="margin-top: 40px;" class="login-button">Log Out</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedIn = localStorage.getItem('loggedIn');
+            const username = localStorage.getItem('username');
+
+            if (!loggedIn || !username) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('admin-username').textContent = username;
+
+            // Logika Log Out
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('loggedIn');
+                localStorage.removeItem('username');
+                window.location.href = 'home.html';
+            });
+            
+            // Logika "Edit Berita"
+            document.getElementById('editBeritaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('beritaTitle').value;
+                const content = document.getElementById('beritaContent').value;
+                localStorage.setItem('beritaContent', JSON.stringify({ title, content }));
+                alert('Berita berhasil diperbarui (hanya di browser ini)!');
+            });
+
+            // Logika "Edit Pop Up"
+            document.getElementById('editPopUpForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const text = document.getElementById('popupText').value;
+                const page = document.getElementById('popupPage').value;
+                localStorage.setItem('popupInfo_' + page, text);
+                alert('Pop-up berhasil diperbarui (hanya di browser ini)!');
+            });
+
+            // Logika "Reset Pop Up"
+            document.getElementById('resetPopUpForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const page = document.getElementById('resetPage').value;
+                localStorage.removeItem('popupInfo_' + page);
+                alert('Pop-up berhasil direset (hanya di browser ini)!');
+            });
+        });
+    </script>
+</body>
+</html>

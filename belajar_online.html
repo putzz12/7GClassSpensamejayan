@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Belajar Online Kelas 7G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .login-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-container h1 {
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-dark);
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: var(--secondary-blue);
+        }
+        
+        .lupa-password {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .lupa-password p {
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .lupa-password .input-group i {
+            left: 0;
+            margin-left: 0;
+        }
+
+        .lupa-password input {
+            padding-left: 40px;
+        }
+
+        .login-note {
+            margin-top: 20px;
+            color: var(--primary-red);
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <h1>LOGIN UNTUK LANJUT KE BELAJAR ONLINE</h1>
+            <div class="input-group">
+                <i class="fas fa-user-circle"></i>
+                <input type="text" id="username" placeholder="Masukkan Username" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Masukkan Password" required>
+            </div>
+            <button class="login-button" onclick="handleLogin()">Masuk</button>
+            
+            <div class="lupa-password">
+                <p>- Lupa Password -</p>
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="text" id="no-registrasi" placeholder="Masukkan No Registrasi">
+                </div>
+            </div>
+            
+            <p class="login-note">*Note: Semua ID dan password sudah diberikan kepada peserta didik kelas 7G. Mohon cek kembali.</p>
+        </div>
+    </div>
+    
+    <script>
+        function handleLogin() {
+            const students = [
+                { name: "ALFIYAH RIZKY HARTANTO", username: "58769", password: "85967", noReg: "1598803088" },
+                { name: "ALKA NATHANAEL CHRISTIANTO", username: "33516", password: "11598", noReg: "1161969678" },
+                { name: "ALMER YAFI EL FATIH", username: "71398", password: "93870", noReg: "1828422408" },
+                { name: "AMANDA EKA PUTRI WIDYANARKO", username: "80126", password: "50397", noReg: "1383284329" },
+                { name: "ARDHANI DZAKY RAMADHAN", username: "37325", password: "65503", noReg: "9311914062" },
+                { name: "ARTLINE MEAN MUGHNI", username: "14977", password: "58817", noReg: "1134065243" },
+                { name: "ASSYIFA LYLA CHANTIOA", username: "98614", password: "46027", noReg: "2734370774" },
+                { name: "ATHALLA NAUFAL MAHARDHIKA", username: "89678", password: "41118", noReg: "7274623546" },
+                { name: "AZ ZAHRA FAJIRINA ALYA RAMADHAN", username: "99802", password: "99851", noReg: "2557031905" },
+                { name: "AZKA RAQILLA RIFFAT WINARTO", username: "75525", password: "30034", noReg: "6982645782" },
+                { name: "CANTIKA ORYZA SIOLAN", username: "58224", password: "55652", noReg: "9616901181" },
+                { name: "DAFYA HUSNA FARIZA", username: "78506", password: "71976", noReg: "8981157621" },
+                { name: "DESTA ANGGORO PUTRO", username: "22036", password: "78027", noReg: "3141011573" },
+                { name: "FADHIL DWI ARISFAN", username: "94843", password: "26352", noReg: "3467282304" },
+                { name: "GEENOAM BANYU NUGRAHA", username: "77824", password: "57995", noReg: "8012726054" },
+                { name: "HANIF AKMALAUFA RAHANDIKA", username: "60784", password: "10006", noReg: "1701562615" },
+                { name: "INTAN CHESTA FRAYUDHA", username: "94715", password: "14547", noReg: "3871023150" },
+                { name: "JENAR SATRIO WIJAYA ARROHMAN", username: "57919", password: "12045", noReg: "8943545763" },
+                { name: "MAICA AURORA PUTRI", username: "22966", password: "69959", noReg: "3389376505" },
+                { name: "MOHAMMAD ADLY PUTRA ZAIDAN", username: "66324", password: "15253", noReg: "6312120744" },
+                { name: "MUHAMMAD ATHA' UBAIDILLAH", username: "97349", password: "93713", noReg: "7413329016" },
+                { name: "MUHAMMAD RIZKY RAJABI", username: "71082", password: "73931", noReg: "7859367352" },
+                { name: "NADILLA PUTRI ANGGRAINI", username: "59273", password: "32346", noReg: "4263090175" },
+                { name: "NIMAS AYU PRAMUDIA", username: "37569", password: "24984", noReg: "2310567201" },
+                { name: "RAFA YAZIDA DANARDI", username: "92964", password: "30461", noReg: "7930331756" },
+                { name: "RAFI FAIZA YUWANA", username: "37020", password: "96993", noReg: "2286397851" },
+                { name: "SABRINA AYUANDARA NURIL WAHDAH", username: "47439", password: "83547", noReg: "8648919917" },
+                { name: "SYAMIL YASSAR ARAFI", username: "44417", password: "44449", noReg: "5364150473" },
+                { name: "VALENCIA QUEENCY PERMATA AQILA", username: "20783", password: "73494", noReg: "6990247720" },
+                { name: "VIOLA ELDELIA QUEENZEE", username: "20561", password: "38094", noReg: "6724260219" },
+                { name: "YUDIK YOGI ABHIRAMA", username: "36916", password: "57661", noReg: "1135171270" },
+                { name: "ZAKY ARYA MAHARDIKA", username: "48100", password: "17621", noReg: "2633334294" }
+            ];
+            
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            
+            let loggedIn = false;
+            let studentName = "";
+            
+            for (let student of students) {
+                if (student.username === usernameInput && student.password === passwordInput) {
+                    loggedIn = true;
+                    studentName = student.name;
+                    break;
+                }
+            }
+
+            if (loggedIn) {
+                localStorage.setItem('loggedInStudentName', studentName);
+                alert("Login berhasil! Selamat datang.");
+                window.location.href = "mapel_list.html";
+            } else {
+                alert("Username atau password salah. Silakan coba lagi.");
+            }
+        }
+    </script>
+</body>
+</html>

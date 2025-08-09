@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas 7G</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">        
+    <style>
+        /* Gaya khusus untuk halaman galeri */
+
+        /* --- ATURAN FONT BARU --- */
+        body {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        .gallery-header h1,
+        .gallery-content h3 {
+            font-family: 'EB Garamond', serif;
+        }
+        /* --- AKHIR ATURAN FONT BARU --- */
+
+        .gallery-header {
+            background: linear-gradient(135deg, #a4508b, #ea00d4, #00d4ff);
+            color: var(--white);
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .gallery-header .logo-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-header .logo-group img {
+            height: 70px;
+        }
+
+        .gallery-header h1 {
+            color: var(--white);
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+        .gallery-header p {
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .gallery-container {
+            padding: 50px 20px;
+            background-color: var(--light-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .gallery-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .gallery-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-content h3 {
+            font-size: 22px;
+            color: var(--primary-blue);
+            margin: 0 0 10px 0;
+        }
+
+        .gallery-content p {
+            font-size: 14px;
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+
+        /* Gaya Modal (Pop-up) Galeri */
+        .modal-gallery {
+            display: none;
+            position: fixed;
+            z-index: 1003;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-gallery {
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.5s;
+        }
+        
+        .modal-gallery-container {
+            position: relative;
+            text-align: center;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        .modal-gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .modal-prev, .modal-next {
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            font-size: 40px;
+            transition: 0.6s ease;
+            user-select: none;
+            padding: 16px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+        }
+        
+        .modal-prev { margin-left: 20px; }
+        .modal-next { margin-right: 20px; }
+
+        .modal-prev:hover, .modal-next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-close-gallery {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .modal-close-gallery:hover,
+        .modal-close-gallery:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        /* Gaya indikator titik */
+        .dot-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .dot-active {
+            background-color: #ffc107;
+        }
+
+        /* Gaya untuk Footer */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-media a {
+            color: var(--white);
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-media a:hover {
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="home.html#beranda" target="_top">Beranda</a></li>
+                    <li><a href="home.html#tentang" target="_top">Tentang</a></li>
+                    <li><a href="home.html#fitur" target="_top">Fitur</a></li>
+                    <li><a href="galeri.html" target="_top">Galeri</a></li>
+                    <li><a href="home.html#kontak" target="_top">Kontak</a></li>
+                    <li><a href="login.html" target="_top">Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="gallery-header">
+            <div class="logo-group">
+                <img src="images/logo_sekolah.png" alt="Logo Sekolah">
+                <img src="images/logo_kelas.png" alt="Logo Kelas 7G">
+            </div>
+            <h1>GALERI FOTO 7G</h1>
+            <p>Dibuat Ai</p>
+        </section>
+
+        <section class="gallery-container">
+            <div class="gallery-grid">
+
+                <div class="gallery-card">
+                    <img src="images/galeri/acara1_1.jpg" alt="Foto Acara 1" class="gallery-card-image" data-event="acara1">
+                    <div class="gallery-content">
+                        <h3>Fotbar Pertama 7G</h3>
+                        <p> Foto bareng bersama Ce es 7G,  Ini fotbar pertama kita. masih menggunakan baju sesuai SD/MI nya masing-masing 🙂👍
+                         Device: Samsung A56</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/galeri/acara2_1.jpg" alt="Foto Acara 2" class="gallery-card-image" data-event="acara2">
+                    <div class="gallery-content">
+                        <h3>Kerja kelompok Persiapan Jalan santai dan lomba Agustusan dalam Acara besar GHANADWIPA</h3>
+                        <p>Kerja kelompok pertama di kelas 7G, ini ditanggal 09/08/2025 Di Alun Alun Caruban, mengukir cerita dan keasikan 😊👍🤗🤗.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/galeri/acara3_1.jpg" alt="Foto Acara 3" class="gallery-card-image" data-event="acara3">
+                    <div class="gallery-content">
+                        <h3>Praktek IPA di Lab</h3>
+                        <p>Petualangan ilmiah di laboratorium sekolah. Kami belajar tentang reaksi kimia dan fenomena alam secara langsung.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/galeri/acara4_1.jpg" alt="Foto Acara 4" class="gallery-card-image" data-event="acara4">
+                    <div class="gallery-content">
+                        <h3>Kunjungan ke Perpustakaan</h3>
+                        <p>Kegiatan literasi di perpustakaan sekolah. Memperluas wawasan dan kecintaan pada buku bersama teman-teman.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/galeri/acara5_1.jpg" alt="Foto Acara 5" class="gallery-card-image" data-event="acara5">
+                    <div class="gallery-content">
+                        <h3>Belajar Kelompok</h3>
+                        <p>Potret kebersamaan saat mengerjakan tugas. Di sini, kami saling membantu dan menginspirasi satu sama lain.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="images/galeri/acara6_1.jpg" alt="Foto Acara 6" class="gallery-card-image" data-event="acara6">
+                    <div class="gallery-content">
+                        <h3>Kerja Bakti Kelas</h3>
+                        <p>Momen kebersamaan membersihkan dan mendekorasi ruang kelas agar lebih nyaman dan bersih untuk belajar.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="images/galeri/acara7_1.jpg" alt="Foto Acara 7" class="gallery-card-image" data-event="acara7">
+                    <div class="gallery-content">
+                        <h3>Kegiatan Olahraga</h3>
+                        <p>Aktivitas olahraga di luar kelas. Mengasah kemampuan fisik dan sportivitas.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="images/galeri/acara8_1.jpg" alt="Foto Acara 8" class="gallery-card-image" data-event="acara8">
+                    <div class="gallery-content">
+                        <h3>Perayaan Hari Guru</h3>
+                        <p>Momen spesial saat kami merayakan dan mengucapkan terima kasih kepada para guru yang telah membimbing kami.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="gallery-modal" class="modal-gallery">
+        <span class="modal-close-gallery">&times;</span>
+        <div class="modal-gallery-container">
+            <img class="modal-content-gallery" id="modal-image-gallery" src="">
+            <div class="modal-gallery-nav">
+                <span class="modal-prev">&lt;</span>
+                <span class="modal-next">&gt;</span>
+            </div>
+            <div class="dot-container"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PZI Technology | Gemini Ai | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber: Web Pencarian, GeminiPRO, Google Maps, SMPN 1 Mejayan </p>
+            <div class="social-media">
+                <p>Follow Us! </p>
+                <a href="https://instagram.com/7gspensa" target="_blank" aria-label="Instagram 7G Spensa"><i class="fab fa-instagram"></i> 7G Spensa</a>
+                <a href="https://instagram.com/smpn1mejayan" target="_blank" aria-label="Instagram SMPN 1 Mejayan"><i class="fab fa-instagram"></i> SMP Negeri 1 Mejayan</a>
+                <a href="https://tiktok.com/@smpn1mejayan" target="_blank" aria-label="TikTok SMPN 1 Mejayan"><i class="fab fa-tiktok"></i> SMP Negeri 1 Mejayan</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('modal-image-gallery');
+            const closeBtn = document.querySelector('.modal-close-gallery');
+            const prevBtn = document.querySelector('.modal-prev');
+            const nextBtn = document.querySelector('.modal-next');
+            const dotContainer = document.querySelector('.dot-container');
+            const images = document.querySelectorAll('.gallery-card-image');
+            
+            let currentImageSet = [];
+            let currentIndex = 0;
+
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    const eventName = this.getAttribute('data-event');
+                    currentImageSet = [];
+                    for (let i = 1; i <= 5; i++) {
+                        currentImageSet.push(`images/galeri/${eventName}_${i}.jpg`);
+                    }
+                    
+                    currentIndex = 0;
+                    modal.style.display = "flex";
+                    modalImg.src = currentImageSet[currentIndex];
+                    
+                    dotContainer.innerHTML = '';
+                    for (let i = 0; i < currentImageSet.length; i++) {
+                        const dot = document.createElement('span');
+                        dot.className = 'dot';
+                        dot.setAttribute('data-index', i);
+                        dot.addEventListener('click', function() {
+                            currentIndex = parseInt(this.getAttribute('data-index'));
+                            showImage();
+                        });
+                        dotContainer.appendChild(dot);
+                    }
+                    showImage();
+                });
+            });
+
+            function showImage() {
+                modalImg.src = currentImageSet[currentIndex];
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.remove('dot-active');
+                    if (index === currentIndex) {
+                        dot.classList.add('dot-active');
+                    }
+                });
+            }
+
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentImageSet.length - 1;
+                showImage();
+            });
+
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex < currentImageSet.length - 1) ? currentIndex + 1 : 0;
+                showImage();
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

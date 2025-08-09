@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mata Pelajaran - Belajar Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mapel-header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .mapel-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .mapel-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .mapel-grid {
+            padding: 50px 20px;
+            background-color: var(--light-bg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .mapel-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: var(--black);
+        }
+        
+        .mapel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .mapel-card i {
+            font-size: 48px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .mapel-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img src="images/logo_sekolah.png" alt="Logo Sekolah" class="logo-item">
+                    <img src="images/logo_osis.png" alt="Logo OSIS" class="logo-item">
+                    <img src="images/logo_kelas.png" alt="Logo Kelas 7G" class="logo-item">
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="home.html#beranda" target="_top">Beranda</a></li>
+                    <li><a href="home.html#tentang" target="_top">Tentang</a></li>
+                    <li><a href="home.html#fitur" target="_top">Fitur</a></li>
+                    <li><a href="galeri.html" target="_top">Galeri</a></li>
+                    <li><a href="home.html#kontak" target="_top">Kontak</a></li>
+                    <li><a href="login.html" target="_top">Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="mapel-header">
+            <h1 id="welcome-message"></h1>
+            <p>Pilih mata pelajaran untuk mengakses materi dan rangkuman belajar.</p>
+        </section>
+
+        <section class="mapel-grid">
+            <a href="ipa.html" class="mapel-card">
+                <i class="fas fa-flask"></i>
+                <h3>IPA</h3>
+            </a>
+            <a href="ips.html" class="mapel-card">
+                <i class="fas fa-globe-americas"></i>
+                <h3>IPS</h3>
+            </a>
+            <a href="bindo.html" class="mapel-card">
+                <i class="fas fa-book-reader"></i>
+                <h3>BAHASA INDONESIA</h3>
+            </a>
+            <a href="binggris.html" class="mapel-card">
+                <i class="fas fa-comment-dots"></i>
+                <h3>BAHASA INGGRIS</h3>
+            </a>
+            <a href="bjawa.html" class="mapel-card">
+                <i class="fas fa-book-open"></i>
+                <h3>BAHASA JAWA</h3>
+            </a>
+            <a href="pai.html" class="mapel-card">
+                <i class="fas fa-mosque"></i>
+                <h3>PAI</h3>
+            </a>
+            <a href="btq.html" class="mapel-card">
+                <i class="fas fa-quran"></i>
+                <h3>BTQ</h3>
+            </a>
+            <a href="pjok.html" class="mapel-card">
+                <i class="fas fa-futbol"></i>
+                <h3>PJOK</h3>
+            </a>
+            <a href="matematika.html" class="mapel-card">
+                <i class="fas fa-calculator"></i>
+                <h3>MATEMATIKA</h3>
+            </a>
+            <a href="ppkn.html" class="mapel-card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>PENDIDIKAN PANCASILA</h3>
+            </a>
+            <a href="informatika.html" class="mapel-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>INFORMATIKA</h3>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> | PZI Technology | Gemini Ai | Google | Hak Cipta Kelas 7G</p>
+            <p class="research-source">Sumber: Web Pencarian, GeminiPRO, Google Maps, SMPN 1 Mejayan </p>
+            <div class="social-media">
+                <p>Follow Us! </p>
+                <a href="https://instagram.com/7gspensa" target="_blank" aria-label="Instagram 7G Spensa"><i class="fab fa-instagram"></i> 7G Spensa</a>
+                <a href="https://instagram.com/smpn1mejayan" target="_blank" aria-label="Instagram SMPN 1 Mejayan"><i class="fab fa-instagram"></i> SMP Negeri 1 Mejayan</a>
+                <a href="https://tiktok.com/@smpn1mejayan" target="_blank" aria-label="TikTok SMPN 1 Mejayan"><i class="fab fa-tiktok"></i> SMP Negeri 1 Mejayan</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const studentName = localStorage.getItem('loggedInStudentName');
+            const welcomeMessageElement = document.getElementById('welcome-message');
+
+            if (studentName) {
+                welcomeMessageElement.textContent = `SELAMAT DATANG, ${studentName}`;
+            } else {
+                // Jika tidak ada nama di penyimpanan, kembalikan ke halaman login
+                window.location.href = "belajar_online.html";
+            }
+        });
+    </script>
+</body>
+</html>

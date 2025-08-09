@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs Resmi Kelas 7G - SMPN 1 Mejayan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-blue: #FFFFF;
+            --secondary-blue: #0056b3;
+            --primary-red: #dc3545;
+            --white: #ffffff;
+            --black: #333333;
+            --gray: #f8f9fa;
+            --gray-dark: #6c757d;
+            --light-bg: #e9ecef;
+            --border-radius: 8px;
+            --glow-color: #a7f3ff;
+            --player-bg: #1a1a1a;
+            --player-text: #ffffff;
+            --player-control-color: #00bfff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            overflow: hidden;
+        }
+
+        .main-frame {
+            flex-grow: 1;
+            border: none;
+            width: 100%;
+        }
+
+        /* --- Gaya CSS untuk Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-logos {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preloader-logos img {
+            height: 100px; /* Ukuran logo loading */
+        }
+
+        .preloader-text h1 {
+            color: #000; /* Warna teks loading hitam */
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: none;
+        }
+
+        .preloader-text p {
+            color: #000; /* Warna teks loading hitam */
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .loading-text {
+            font-weight: 600;
+            margin-top: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .preloader-info {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.7rem;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* --- Gaya CSS untuk Pop-up Rilis --- */
+        #release-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #release-popup-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-card {
+            background-color: var(--white);
+            color: var(--black);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 90%;
+            width: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+
+        #release-popup-overlay.show .popup-card {
+            transform: scale(1);
+        }
+
+        .popup-card h2 {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .popup-card p {
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .popup-card .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .popup-card .form-group i,
+        .popup-card .form-group img {
+            width: 18px;
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .popup-card input,
+        .popup-card select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--gray-dark);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .popup-card button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .popup-card button:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        /* --- Gaya CSS untuk Pemutar Musik (Diperbaiki) --- */
+        .music-player-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(100%);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+            background-color: var(--player-bg);
+            color: var(--player-text);
+            padding: 15px 0;
+        }
+
+        .music-player-box.visible {
+            transform: translateY(0);
+        }
+
+        .player-content {
+            padding: 10px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .player-toggle-btn {
+            background: var(--secondary-blue);
+            color: var(--white);
+            border: none;
+            width: 100%;
+            padding: 10px 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .player-toggle-btn:hover {
+            background-color: #004499;
+        }
+
+        .music-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 5px 0;
+            color: var(--player-text);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .music-controls button {
+            background: none;
+            border: none;
+            color: var(--player-control-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            padding: 5px;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.1);
+            color: var(--white);
+        }
+
+        .play-pause-btn {
+            font-size: 32px;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--player-text);
+        }
+
+        #progress-bar {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #progress-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--player-control-color);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .time-display {
+            font-size: 12px;
+        }
+
+        .music-toggle-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            background-color: var(--secondary-blue);
+            text-align: center;
+        }
+
+        #hide-player-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-logos">
+            <img src="images/logo_sekolah.png" alt="Logo SMPN 1 Mejayan" height="100">
+            <img src="images/logo_kelas.png" alt="Logo Kelas 7G" height="100">
+        </div>
+        <div class="preloader-text">
+            <h1>---KELAS 7G---</h1>
+            <p class="loading-text">--Mengunduh resources---</p>
+        </div>
+        <div class="preloader-info">
+            <p>Website version: 0.043.AQPL</p>
+            <p>By: PZI Technology And GeminiAi Pro</p>
+        </div>
+    </div>
+
+    <div id="release-popup-overlay">
+        <div class="popup-card">
+            <h2>HOREEE!! WEB KELAS SUDAH DIRILIS NIH!!! AYO JADILAH YANG PERTAMA YANG MENGUNJUNGI WEBSITE INI!!!</h2>
+            <p>Alhamdulillah, Websitenya sudah jadi, kehadirat Allah SWT. Dengan lancar dan sukses. Terimakasih atas dukungan kalian selama web dibuat, Terimakasih juga kepada Google LLC (GeminiAI), SIBI, Canva, Orang yang mendukung, GitHub. Untuk tanda terimakasih jadilah orang yang mengunjungi web pertamakali nya. (TEKAN BAWAH (SETELAH MENU MURID-GURU) SAMPAI MUNCUL SUBMIT)</p>
+
+            <form id="release-form">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="visitor-name" placeholder="Silahkan masukan nama anda" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-graduation-cap"></i>
+                    <input type="text" id="visitor-class" placeholder="Silahkan Masukan nama kelas anda" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-user-tag"></i>
+                    <select id="visitor-role" required>
+                        <option value="">Pilihan: Murid-Guru</option>
+                        <option value="Murid">Murid</option>
+                        <option value="Guru">Guru</option>
+                    </select>
+                </div>
+                <button type="submit">Submit/Kirim</button>
+            </form>
+        </div>
+    </div>
+
+    <iframe id="main-frame" name="main-frame" src="home.html" class="main-frame" style="opacity: 0;"></iframe>
+
+    <div class="music-player-box" id="music-player-box">
+        <button class="player-toggle-btn" id="hide-player-btn">[SEMBUNYIKAN PLAYER MUSIC]</button>
+        <div class="player-content">
+            <h3 class="music-title" id="song-title">Judul Lagu</h3>
+            <audio id="background-music" preload="auto"></audio>
+            <div class="music-controls">
+                <button id="prev-btn" title="Sebelumnya"><i class="fas fa-backward"></i></button>
+                <button id="play-pause-btn" class="play-pause-btn" title="Putar"><i class="fas fa-play"></i></button>
+                <button id="next-btn" title="Selanjutnya"><i class="fas fa-forward"></i></button>
+            </div>
+            <div class="progress-bar-container">
+                <span id="current-time" class="time-display">00:00</span>
+                <input type="range" id="progress-bar" value="0" step="1">
+                <span id="duration-time" class="time-display">00:00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-toggle-wrapper">
+        <button class="player-toggle-btn" id="show-player-btn">[MUNCULKAN MUSIC PLAYER]</button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('background-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const songTitleEl = document.getElementById('song-title');
+        const musicPlayerBox = document.getElementById('music-player-box');
+        const showPlayerBtn = document.getElementById('show-player-btn');
+        const hidePlayerBtn = document.getElementById('hide-player-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationTimeEl = document.getElementById('duration-time');
+        const preloader = document.getElementById('preloader');
+        const iframe = document.getElementById('main-frame');
+
+        const playlist = [
+            { title: "Anak Indonesia Hebat", file: "music/lagu1.mp3" },
+            { title: "Monolog - Pamungkas", file: "music/lagu2.mp3" },
+            { title: "Judul Lagu 3", file: "music/lagu3.mp3" }
+        ];
+        let currentSongIndex = 0;
+        let isPlaying = false;
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function loadSong(index) {
+            audio.src = playlist[index].file;
+            songTitleEl.textContent = playlist[index].title;
+            audio.onloadedmetadata = () => {
+                progressBar.max = audio.duration;
+                durationTimeEl.textContent = formatTime(audio.duration);
+            };
+            if (isPlaying) { audio.play(); }
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audio.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            loadSong(currentSongIndex);
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+            loadSong(currentSongIndex);
+        }
+
+        function updateProgress() {
+            progressBar.value = audio.currentTime;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+
+        function setProgress() { audio.currentTime = progressBar.value; }
+
+        showPlayerBtn.addEventListener('click', function() {
+            musicPlayerBox.classList.add('visible');
+            showPlayerBtn.style.display = 'none';
+            hidePlayerBtn.style.display = 'block';
+            if (!isPlaying) { audio.play(); isPlaying = true; playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'; }
+        });
+
+        hidePlayerBtn.addEventListener('click', function() {
+            musicPlayerBox.classList.remove('visible');
+            showPlayerBtn.style.display = 'block';
+            hidePlayerBtn.style.display = 'none';
+        });
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        nextBtn.addEventListener('click', nextSong);
+        prevBtn.addEventListener('click', prevSong);
+        audio.addEventListener('ended', nextSong);
+        audio.addEventListener('timeupdate', updateProgress);
+        progressBar.addEventListener('input', setProgress);
+
+        loadSong(currentSongIndex);
+
+        document.addEventListener("DOMContentLoaded", function() {
+        
+            const minDisplayTime = 5000;
+            const start_time = new Date().getTime();
+            let iframe_loaded = false;
+
+            iframe.onload = function() {
+                iframe_loaded = true;
+                hidePreloader();
+            };
+
+            function hidePreloader() {
+                const elapsed_time = new Date().getTime() - start_time;
+                const remaining_time = minDisplayTime - elapsed_time;
+
+                if (iframe_loaded && remaining_time <= 0) {
+                    preloader.classList.add('fade-out');
+                    showReleasePopup();
+                } else if (iframe_loaded) {
+                    setTimeout(() => {
+                        preloader.classList.add('fade-out');
+                        showReleasePopup();
+                    }, remaining_time);
+                }
+            }
+
+            preloader.addEventListener('transitionend', function(e) {
+                if (e.propertyName === 'opacity' && preloader.classList.contains('fade-out')) {
+                    preloader.style.display = 'none';
+                }
+            }, { once: true });
+
+            iframe.style.transition = "opacity 1s ease-in-out";
+            iframe.style.opacity = "0";
+
+            setTimeout(() => {
+                iframe_loaded = true;
+                hidePreloader();
+            }, minDisplayTime + 1000);
+
+            const releasePopupOverlay = document.getElementById('release-popup-overlay');
+            const releaseForm = document.getElementById('release-form');
+
+            function showReleasePopup() {
+                const today = new Date();
+                // Set tanggal rilis ke 10 Agustus 2025
+                const releaseDate = new Date('2025-08-10T00:01:00');
+                const hasVisited = localStorage.getItem('hasVisited');
+                
+                const isReleaseDate = today.getFullYear() === releaseDate.getFullYear() &&
+                                      today.getMonth() === releaseDate.getMonth() &&
+                                      today.getDate() === releaseDate.getDate();
+
+                if (isReleaseDate && !hasVisited) {
+                    preloader.addEventListener('transitionend', () => {
+                        releasePopupOverlay.style.display = 'flex';
+                        setTimeout(() => {
+                            releasePopupOverlay.classList.add('show');
+                        }, 50);
+                    }, { once: true });
+                } else {
+                    preloader.addEventListener('transitionend', () => {
+                        document.body.classList.add('body-visible');
+                        iframe.style.opacity = '1';
+                    }, { once: true });
+                }
+            }
+
+            releaseForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('visitor-name').value;
+                const className = document.getElementById('visitor-class').value;
+                const role = document.getElementById('visitor-role').value;
+                const botToken = '7954424570:AAEvp947VIFz-Ze_A57WJbk5dwiPha20kHA';
+                const chatId = '6658188102';
+                const messageText = `🎉 Pengunjung Baru Website Kelas 7G!\n\nNama: ${name}\nKelas: ${className}\nPeran: ${role}`;
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Pesan terkirim ke Telegram:', data);
+                        localStorage.setItem('hasVisited', 'true');
+                        releasePopupOverlay.classList.remove('show');
+                        releasePopupOverlay.addEventListener('transitionend', () => {
+                            releasePopupOverlay.style.display = 'none';
+                            document.body.classList.add('body-visible');
+                            iframe.style.opacity = '1';
+                        }, { once: true });
+                    })
+                    .catch(error => {
+                        console.error('Error saat mengirim pesan ke Telegram:', error);
+                        localStorage.setItem('hasVisited', 'true');
+                        releasePopupOverlay.classList.remove('show');
+                        releasePopupOverlay.addEventListener('transitionend', () => {
+                            releasePopupOverlay.style.display = 'none';
+                            document.body.classList.add('body-visible');
+                            iframe.style.opacity = '1';
+                        }, { once: true });
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
